@@ -1,26 +1,23 @@
-function triggerExplosion() {
+function showTextsAndSparkles() {
     const textSection = document.getElementById('text-section');
     textSection.style.display = 'block';
 
-    createExplosion();
+    createSparkles();
 }
 
-function createExplosion() {
-    const container = document.querySelector('.background');
-    const particleCount = 100; 
-
-    for (let i = 0; i < particleCount; i++) {
+function createSparkles() {
+    const container = document.querySelector('.container');
+    for (let i = 0; i < 30; i++) {
         const sparkle = document.createElement('div');
         sparkle.classList.add('sparkle');
-
-        sparkle.style.top = '50%';
-        sparkle.style.left = '50%';
-
-        sparkle.style.setProperty('--x', Math.random() * 2 - 1); 
-        sparkle.style.setProperty('--y', Math.random() * 2 - 1); 
-
+        
+        // Posição aleatória ao redor do título
+        sparkle.style.top = `${50 + Math.random() * 10 - 5}%`;
+        sparkle.style.left = `${50 + Math.random() * 20 - 10}%`;
+        
         container.appendChild(sparkle);
 
+        // Remover o brilho após a animação
         sparkle.addEventListener('animationend', () => {
             sparkle.remove();
         });
@@ -28,6 +25,7 @@ function createExplosion() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Gera partículas de fundo
     const particleCount = 100;
     const background = document.querySelector('.background');
 
@@ -35,8 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const particle = document.createElement('div');
         particle.classList.add('particle');
         
+        // Posição e animação aleatória
         particle.style.top = `${Math.random() * 100}%`;
         particle.style.left = `${Math.random() * 100}%`;
+        particle.style.animationDuration = `${3 + Math.random() * 2}s`;
+        
         background.appendChild(particle);
     }
 });
